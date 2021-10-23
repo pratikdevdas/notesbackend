@@ -1,12 +1,22 @@
-GET http://localhost:3001/api/notes
-
+GET http://localhost:3001/api/notes/sdfsdfsd
 
 ###
-POST http://localhost:3001/api/notes/ HTTP/1.1
+POST http://localhost:3001/api/notes HTTP/1.1
 content-type: application/json
 
 {
-    "content": "samplesdaf"
+    "content": "sampfdsflgd;slfdfcdfsdadfasasf",
+    "important":true
 }
 
+###
+PUT http://localhost:3001/api/notes/617331fabe159e1e2e71aaf1
+content-type: application/json
 
+{
+    "content": "sampfdsflgd;slfdfcdfsdadfasasf",
+    "important":false
+}
+
+###
+DELETE http://localhost:3001/api/notes/6172c49bf8da00876dbb3d3b
