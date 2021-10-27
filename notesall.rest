@@ -5,7 +5,7 @@ POST http://localhost:3001/api/notes HTTP/1.1
 content-type: application/json
 
 {
-    "content": "sampfdsflgd;slfdfcdfsdadfasasf",
+    "content": "Aur batao sheela mausi",
     "important":true
 }
 
@@ -14,7 +14,7 @@ PUT http://localhost:3001/api/notes/617331fabe159e1e2e71aaf1
 content-type: application/json
 
 {
-    "content": "sampfdsflgd;slfdfcdfsdadfasasf",
+    "content": "sampfdsflgd;slfdfcdfsdadadfcasdfdfasasf",
     "important":false
 }
 
