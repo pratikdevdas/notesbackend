@@ -1,11 +1,10 @@
-GET http://localhost:3001/api/notes/sdfsdfsd
-
+GET http://localhost:3001/api/notes/
 ###
 POST http://localhost:3001/api/notes HTTP/1.1
 content-type: application/json
 
 {
-    "content": "Aur batao sheela mausi",
+    "content": "Aur batao sheela mausi jaun?",
     "important":true
 }
 
@@ -19,4 +18,4 @@ content-type: application/json
 }
 
 ###
-DELETE http://localhost:3001/api/notes/6172c49bf8da00876dbb3d3b
+DELETE http://localhost:3001/api/notes/617859ab280afcbb58258d9c
