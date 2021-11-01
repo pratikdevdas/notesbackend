@@ -1,11 +1,22 @@
-GET http://localhost:3001/api/notes/
+GET http://localhost:3001/api/users/
+
 ###
-POST http://localhost:3001/api/notes HTTP/1.1
+post http://localhost:3001/api/notes
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJldmVuYW50IiwiaWQiOiI2MTgwNTY0MjFiYzcwZmIyOTcxZjU0YmIiLCJpYXQiOjE2MzU4MDA3NzV9.W4ZtarCmTIa8NEEt1xRpn9WWL0waw0l7_64ZzXITaBA
+
+{
+    "content": "sdfsdfsdfsddfiNDIA IS BEST ofsdfut there",
+    "important":true
+}
+
+###
+POST http://localhost:3001/api/login
 content-type: application/json
 
 {
-    "content": "Aur batao sheela mausi jaun?",
-    "important":true
+"username":"revenant",
+"password":"easy"
 }
 
 ###
@@ -19,3 +30,25 @@ content-type: application/json
 
 ###
 DELETE http://localhost:3001/api/notes/617859ab280afcbb58258d9c
+
+###
+POST http://localhost:3001/api/users HTTP/1.1
+content-type: application/json
+
+{
+    "notes": [],
+    "username": "revenant",
+    "name": "rev",
+    "password": "easy"
+}
+
+###
+POST http://localhost:3001/api/notes HTTP/1.1
+content-type: application/json
+
+{
+    "content": "the world is straight",
+    "important":true
+}
+
+

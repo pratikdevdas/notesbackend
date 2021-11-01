@@ -3,24 +3,22 @@ const supertest = require('supertest')
 const helper = require('./test_helper')
 const app = require('../app')
 const api = supertest(app)
+const bcrypt = require('bcrypt')
 const Note = require('../models/note')
+const User = require('../models/user')
 
 //initialnotes array refactored to file './test_helper'
 beforeEach(async() => {
     await Note.deleteMany({})
-    console.log('cleared')
 
     for(let note of helper.initialNotes){
         let noteObject = new Note(note)
         await noteObject.save()
-        console.log('saved')
     }
-    console.log('done')
 })
 
 describe('when there is initially some note saved',() => {
     test('notes are returned as json', async () => {
-        console.log('entered')
         await api
             .get('/api/notes')
             .expect(200)
@@ -134,6 +132,64 @@ describe('deletion of note',() => {
         expect(contents).not.toContain(noteToDelete.content)
     })
 })
+
+//test for adding users authentication
+describe('when there is usually one user in database',() => {
+    beforeEach(async () => {
+        await User.deleteMany({})
+
+        const passwordHash = await bcrypt.hash('sekret', 10)
+        const user = new User ({ username:'root',passwordHash })
+
+        await user.save()
+    })
+    test('creation suceeds with first username', async () => {
+        const usersAtStart = await helper.usersInDb()
+
+        const newUser = {
+            username: 'mluukainen',
+            name:'Matti Lukkainen',
+            password:'salainen'
+        }
+
+        await api.
+            post('/api/users')
+            .send(newUser)
+            .expect(200)
+            .expect('Content-Type', /application\/json/)
+
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd).toHaveLength(
+            usersAtStart.length + 1
+        )
+
+        const usernames = usersAtEnd.map(u => u.username)
+        expect(usernames).toContain(newUser.username)
+    },10000)
+
+    test('creation fails with proper status code and message if username is already taken', async () => {
+        const usersAtStart = await helper.usersInDb()
+
+        const newUser = {
+            username: 'root',
+            name:'Superuser',
+            password:'salainen'
+        }
+
+        const result = await api.
+            post('/api/users')
+            .send(newUser)
+            .expect(400)
+            .expect('Content-Type', /application\/json/)
+
+        expect(result.body.error).toContain('`username` to be unique')
+
+        const usersAtEnd = await helper.usersInDb()
+        expect(usersAtEnd).toHaveLength(usersAtStart.length)
+    })
+})
+
+
 afterAll(() => {mongoose.connection.close()})
 
 // The following command only runs the tests found in the tests/note_api.test.js file:
