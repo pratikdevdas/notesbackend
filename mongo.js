@@ -31,7 +31,7 @@ const note = new Note({
     date: new Date(),
     important: true,
 })
-
+console.log('hello world')
 note.save().then(() => {
     console.log('note saved!')
     mongoose.connection.close()
