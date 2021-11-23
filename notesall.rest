@@ -37,7 +37,7 @@ content-type: application/json
 
 {
     "notes": [],
-    "username": "revenant",
+    "username": "suhani",
     "name": "rev",
     "password": "easy"
 }
