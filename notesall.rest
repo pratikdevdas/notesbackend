@@ -15,8 +15,8 @@ POST http://localhost:3001/api/login
 content-type: application/json
 
 {
-"username":"revenant",
-"password":"easy"
+    "username":"mluukkai",
+    "password":"salainen"
 }
 
 ###
@@ -37,9 +37,9 @@ content-type: application/json
 
 {
     "notes": [],
-    "username": "suhani",
-    "name": "rev",
-    "password": "easy"
+    "username": "ram",
+    "name": "toss",
+    "password": "babu"
 }
 
 ###
@@ -50,5 +50,9 @@ content-type: application/json
     "content": "the world is straight",
     "important":true
 }
+
+###
+POST http://localhost:3001/api/testing/reset HTTP/1.1
+content-type: application/json
 
 
